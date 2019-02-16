@@ -691,7 +691,7 @@ header
 
 .header {
    height: 85vh;
-   background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.5)), to(#28b485cc)), url(../images/backgroundImg.jpg);
+   background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.8)), to(#28b485cc)), url(images/hero.jpg);
    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(../images/BackgroundImg.jpg);
    background-size: cover;
    background-position: top;
@@ -1410,7 +1410,8 @@ comments form  styles
         padding: 10rem;
     }
     .signUp_form {
-        background-image:linear-gradient(105deg,rgba(50, 78, 235, 0.9)0%, rgba(50,78,235,0.9)50%, transparent 50%);
+        background-image:linear-gradient(105deg,rgba(255, 255, 255, 0.9)0%, rgba(255, 255, 255,0.9)50%, transparent 50%), url(../images/signupImg.jpg);
+        /* background-color: rgba(71, 168, 229, 0.9);  */
         background-size: 100%; 
         background-repeat: no-repeat;
         border-radius:3px; 
@@ -1419,3 +1420,4 @@ comments form  styles
         padding: 5rem;
        
     }
+   
