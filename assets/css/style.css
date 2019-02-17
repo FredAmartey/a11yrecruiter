@@ -229,39 +229,39 @@ utilities
 */
 
 .center-text {
-   text-align: center;
+   text-align: center !important;
 }
 
 .margin-bottom-small {
-   margin-bottom: 1.5rem;
+   margin-bottom: 1.5rem !important;
 }
 
 .margin-bottom-medium {
-margin-bottom: rem;
+margin-bottom: rem !important;
 }
 
 @media only screen and (max-width: 56.25em){
    .margin-bottom-medium  {
-       margin-bottom: 3rem;
+       margin-bottom: 3rem !important;
    }
 }
 
 .margin-bottom-big {
-   margin-bottom: 8rem;
+   margin-bottom: 8rem !important;
 }
 
 @media only screen and (max-width: 56.25em){
    .margin-bottom-big {
-       margin-bottom: 5rem;
+       margin-bottom: 5rem !important;
    }
 }
 
 .margin-top-big {
-   margin-top: 8rem;
+   margin-top: 8rem !important;
 }
 
 .margin-top-huge {
-   margin-top: 10rem;
+   margin-top: 10rem !important;
 }
 
 .margin-top-mini {
@@ -291,7 +291,7 @@ margin-bottom: rem;
 ====================
 buttons
 ====================
-
+*/
 .btn, .btn:link, .btn:visited {
    text-transform: uppercase;
    text-decoration: none;
@@ -303,11 +303,13 @@ buttons
    transition: all .2s;
    position: relative;
    cursor: pointer;
+   background-color: #2A6BAC;
+   color: white;
 }
 
 .btn--white {
   background-color: #fff;
-  color: #777;
+  color: rgb(119, 119, 119);
 }
 
 .btn--white::after {
@@ -379,7 +381,7 @@ buttons
    -webkit-transform: translateY(0);
    transform: translateY(0);
 }
-*/
+
 
 /*
 ====================
@@ -432,7 +434,7 @@ grid layout
 
 @media only screen and (max-width: 56.25em){
    .row [class^="col-"] {
-       width: 100%;
+       width: 100% !important;
    }
 }
 
@@ -492,8 +494,6 @@ navigation
    text-align: center;
    cursor: pointer;
 }
-
-
 
 @media only screen and (max-width: 56.25em){
    .navigation__button {
@@ -658,7 +658,9 @@ navigation
    -webkit-transform: rotate(-135deg);
            transform: rotate(-135deg);
 }
+
 nav ul li{
+  
    list-style: none;
 }
 nav ul li a{
@@ -719,8 +721,6 @@ nav ul li ul li a:hover{
 
 
 
-
-
 /*
 ====================
 header
@@ -742,8 +742,8 @@ header
  
        @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (min-width: 125em) {
      .header {
-      /* background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.8)), to(rgba(40, 180, 133, 0.8))), url(../images/hero.jpg);
-       background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../images/hero.jpg);*/
+       background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.8)), to(rgba(40, 180, 133, 0.8))), url(../images/hero.jpg);
+       background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../images/hero.jpg);
    }
 }
  
@@ -1056,7 +1056,7 @@ form styles
    border-radius: 2px;
    /* background-color: rgba(#ffffff, 0.5); */
    border: none;
-   border: .5px solid #000;
+   border: .5px solid #2A6BAC;
    display: block;
    width: 35%;
    -webkit-transition: all .3s;
@@ -1458,9 +1458,6 @@ comments form  styles
         padding: 5rem;
        
     }
-    .subhead{
-       font-size: 3rem;
-    }
     .employerSignUp_form {
       background-image:linear-gradient(105deg,rgba(255, 255, 255, 0.9)0%, rgba(255, 255, 255,0.9)50%, transparent 50%), url(../images/employerSignUp.jpg);
       /* background-color: rgba(71, 168, 229, 0.9);  */
@@ -1483,4 +1480,22 @@ comments form  styles
    padding: 5rem;
   
 }
-   
+    .subhead{
+        font-size: 3rem; 
+        color: white;
+    }
+    #bootstrap-overrides{
+       color:white; 
+
+    }
+    #mediumBlue{
+      background-color: #2A6BAC;
+    }
+   #darkBlue{
+      background-color: #133A7C;
+   }
+
+   .navbar-default {
+      /* border-color: transparent; */
+      border: none;
+   }
