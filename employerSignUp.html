@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset = "UTF-8">
-        <title>A11yRecruiter</title>
+        <title>A11yRecruiters</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">        >
         <link rel="stylesheet" href="assets/css/style.css">
         <script src = "js/prefixfree.min.js"></script>
@@ -19,28 +19,32 @@
                             <span class="iconbar"></span>
                             <span class="iconbar"></span>
                         </button>
-                        <a class="navbar-brand" href="/"> <span class="subhead">A11y Recruiter</span></a>
+                        <a class="navbar-brand" href="index.html"> <span class="subhead">A11y Recruiters</span></a>
                     </div><!-- navbar-header -->
                     <div class="collapse navbar-collapse" id="collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                    <li ><a href="#featured">For Employers</a>
+                                    <li class="active" ><a href="#featured">For Employers</a>
                                         <ul>
                                                 <li class="active"><a href="#">Employer Login</a></li>
                                                 <li class="active"><a href="employerSignUp.html">Employer SignUp</a></li>
                                         </ul>
                                     </li>
-                                    <li class="active"><a href="login.html">Login</a></li>
+                                    <li><a href="login.html">Login</a></li>
                                     <li><a href="signUp.html">SignUp</a></li>
-                                   </ul>        
+                                   </ul>    
                     </div><!-- collapse navbar-collapse -->
                     </div><!-- container -->
             </nav>
         </header>
             <div class="signup margin-top-huge">
                     <div class="row">
-                                    <div class = "signUp_form">
+                                    <div class = "employerSignUp_form">
                                             <form action="">
                                                             <div class="form__group">
+                                                                    <div class="form__group">
+                                                                            <input class = "form__input " type="company" id="company" placeholder="Company">
+                                                                            <label for="company" class="form__label">Company</label>
+                                                                          </div>
                                                                     <input class = "form__input " type="firstname" id="firstname" placeholder="First Name">
                                                                     <label for="pass" class="form__label">Password</label>
                                                                   </div>

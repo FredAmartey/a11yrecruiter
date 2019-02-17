@@ -643,7 +643,26 @@ navigation
    -webkit-transform: rotate(-135deg);
            transform: rotate(-135deg);
 }
-
+nav ul li{
+   list-style: none;
+}
+nav ul li a{
+   display:block;
+}
+nav ul li ul{
+   display: none;
+   position:absolute; 
+   background-color: #fff;
+}
+nav ul li:hover ul{
+   display: block;
+}
+nav ul li ul li a{
+   padding: 12px 14px;
+}
+nav ul li ul li a:hover{
+   background-color: #f3f3f3;
+}
 /*
 
 .nav_header {
@@ -1427,4 +1446,15 @@ comments form  styles
     .subhead{
        font-size: 3rem;
     }
+    .employerSignUp_form {
+      background-image:linear-gradient(105deg,rgba(255, 255, 255, 0.9)0%, rgba(255, 255, 255,0.9)50%, transparent 50%), url(../images/employerSignUp.jpg);
+      /* background-color: rgba(71, 168, 229, 0.9);  */
+      background-size: 100%; 
+      background-repeat: no-repeat;
+      border-radius:3px; 
+      -webkit-box-shadow:0 1.5rem 4rem rgba(0,0,0,0.2);
+          box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+      padding: 5rem;
+     
+  }
    
