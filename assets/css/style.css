@@ -97,6 +97,23 @@ body {
 
 }
 
+.indexpictext {
+    /*position: absolute;*/
+    /*background-color: #333;*/
+    background-color: rgba(255,255,255,0.9);
+    padding: 1em;
+    border-radius: 25px;
+
+}
+
+#indexpic {
+    width: 100%;
+    height: -webkit-fill-available;
+    transition: width 1s;
+    -webkit-transition: width 1s;
+    position: relative;
+}
+
 
 /*
 ====================
