@@ -212,39 +212,39 @@ utilities
 */
 
 .center-text {
-   text-align: center !important;
+   text-align: center;
 }
 
 .margin-bottom-small {
-   margin-bottom: 1.5rem !important;
+   margin-bottom: 1.5rem;
 }
 
 .margin-bottom-medium {
-margin-bottom: rem !important;
+margin-bottom: rem;
 }
 
 @media only screen and (max-width: 56.25em){
    .margin-bottom-medium  {
-       margin-bottom: 3rem !important;
+       margin-bottom: 3rem;
    }
 }
 
 .margin-bottom-big {
-   margin-bottom: 8rem !important;
+   margin-bottom: 8rem;
 }
 
 @media only screen and (max-width: 56.25em){
    .margin-bottom-big {
-       margin-bottom: 5rem !important;
+       margin-bottom: 5rem;
    }
 }
 
 .margin-top-big {
-   margin-top: 8rem !important;
+   margin-top: 8rem;
 }
 
 .margin-top-huge {
-   margin-top: 10rem !important;
+   margin-top: 10rem;
 }
 
 .margin-top-mini {
@@ -274,7 +274,7 @@ margin-bottom: rem !important;
 ====================
 buttons
 ====================
-*/
+
 .btn, .btn:link, .btn:visited {
    text-transform: uppercase;
    text-decoration: none;
@@ -362,7 +362,7 @@ buttons
    -webkit-transform: translateY(0);
    transform: translateY(0);
 }
-
+*/
 
 /*
 ====================
@@ -415,7 +415,7 @@ grid layout
 
 @media only screen and (max-width: 56.25em){
    .row [class^="col-"] {
-       width: 100% !important;
+       width: 100%;
    }
 }
 
@@ -474,6 +474,10 @@ navigation
    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
    text-align: center;
    cursor: pointer;
+}
+
+.navbutton{
+
 }
 
 @media only screen and (max-width: 56.25em){
