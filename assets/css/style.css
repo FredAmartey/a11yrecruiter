@@ -639,7 +639,26 @@ navigation
    -webkit-transform: rotate(-135deg);
            transform: rotate(-135deg);
 }
-
+nav ul li{
+   list-style: none;
+}
+nav ul li a{
+   display:block;
+}
+nav ul li ul{
+   display: none;
+   position:absolute; 
+   background-color: #fff;
+}
+nav ul li:hover ul{
+   display: block;
+}
+nav ul li ul li a{
+   padding: 12px 14px;
+}
+nav ul li ul li a:hover{
+   background-color: #f3f3f3;
+}
 /*
 
 .nav_header {
