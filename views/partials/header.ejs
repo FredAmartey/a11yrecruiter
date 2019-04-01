@@ -1,64 +1,35 @@
-
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>a11yRecruiter</title>
-        <!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> 
-        <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
-        
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <meta name="google-signin-client_id" content="776128651824-b2btrasqv8a50tn32jed3946d5jfkmpd.apps.googleusercontent.com">     
+       <title>Login</title>
+       <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+       <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Quicksand:300,400,700"> 
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+       <link rel="stylesheet" href="/stylesheets/main.css" />
+       <link rel="stylesheet" href="/stylesheets/vizz.css" />
+       <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
-        <!--<div class="nav__icon">-->
-        <!--   <div class="home__icon">-->
-        <!--       a11yRecruiter-->
-        <!--   </div>-->
-        <!--</div>-->
-        <!--<div class="navigation">-->
-        <!--    <nav class="navigation__nav">-->
-        <!--        <ul class="navigation__list">-->
-                  <!--if(!currentUser){  %> -->
-         <!--            <li class="navigation__item"><a class="navigation__link" href="/jobs">Jobs</a></li>-->
-         <!--            <li class="navigation__item"><a class="navigation__link" href="/login">Login</a></li>-->
-         <!--            <li class="navigation__item"><a class="navigation__link" href="/register">SignUp</a></li>-->
-                   <!-- else{ %>-->
-        <!--            <li class="navigation__item"><a class="navigation__link" href="/login">Signed in as </a></li>-->
-        <!--            <li class="navigation__item"><a class="navigation__link" href="/register">Logout</a></li>-->
-                    <!--%>-->
-        <!--        </ul>-->
-        <!--    </nav>-->
-        <!--</div>-->
-        
-        <header>
-                    <nav class = "navbar navbar-default mediumBlue navbar-fixed-top" role = "navigation">
-                        <div class = "container">
-                            <div class = "navbar-header">
-                                
-                                    <a class="navbar-brand" href="/jobs"><span class="subhead">A11y Recruiters</span></a>
-                                <button type = "button" class = "navbar-toggle collapsed" data-toggle = "collapse" data-target = "#collapse">
-                                    <span class= "sr-only">Toggle navigation </span>
-                                    <span class="iconbar"></span>
-                                    <span class="iconbar"></span>
-                                    <span class="iconbar"></span>
-                                   
-                                </button>
-                               
-                            </div><!-- navbar-header -->
-                            <div class="collapse navbar-collapse" id="collapse">
-                              <ul class="nav navbar-nav navbar-right">
-                                  <%if(!currentUser) { %>
-                                    <li id = "darkBlue"><a href ="/about" id = "bootstrap-overrides">About Us</a></li>
-                                <li><a href="#" id = "bootstrap-overrides">Employers</a>
-                                </li>
-                                <li><a href="/login" id = "bootstrap-overrides">Login</a></li>
-                                <li><a href="/register" id = "bootstrap-overrides">SignUp</a></li>
-                                <% }else{ %>
-                                    <li><a href="#"></a>Singed In as <%=currentUser.username %></li>
-                                    <li><a href="/logout" id = "bootstrap-overrides">Logout</a></li>
-                                <% } %>
-                               </ul>       
-                            </div><!-- collapse navbar-collapse -->
-                            </div><!-- container -->
-                    </nav>
-                </header>
-        
-    
+        <div class="navigation__background-c navigation__nav">
+            <nav>
+              <div class="row">
+                   <div class="navigation_logo">
+                    <a class="navigation_logo-link" href="/">A11yRecruiter</a>
+                </div>
+                <ul class="navigation__list">
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Contact Us</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Need Help?</a>
+                    </li>
+                    <!-- <li class="navigation__item">
+                        <a class="navigation__link btn btn--medium-blue btn--sr" href="/login" class="">Log in</a>
+                    </li> -->
+                </ul>
+              </div>
+            </nav>
+        </div>
