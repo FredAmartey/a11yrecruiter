@@ -1,21 +1,49 @@
-<% include ./partials/header %>
-
- <div class="row">
-    <div class="signUp_form margin-top-huge">
-         <form action="/login" method="POST">
-  <div class="form__group">
-        <input class="form__input" type="text" name="username" placeholder="username">
-  </div>    
-  <div class="form__group">
-      <input class="form__input" type="password" name="password" placeholder="password">
-  </div>
-    <button class="btn btn--blue">Login</button>
-    
-</form>
+<% include ./partials/header %> 
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="/register" method="POST">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="/auth/google" class="social"><i class="fab fa-google"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <input name="firstName" type="text" placeholder="First Name" />
+                <input name="lastName" type="text" placeholder="Last Name" />
+                <input name="email" type="email" placeholder="Email" />
+                <input name="password" type="password" placeholder="Password" />
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="/login" method="POST">
+                <h1>Sign In</h1>
+                <div class="social-container">
+                    <a href="/auth/google" class="social"><i class="fab fa-google"></i></a>
+                </div>
+                <span>or use your account</span>
+                    <input id="email" name="email" type="email" placeholder="Email" />
+                    <input id="password" name="password" type="password" placeholder="Password" />
+                <a class="passwordlink" href="#">Forgot your password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Already have an account?</h1>
+                    <p>Sign in with an already existing account.</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hi!</h1>
+                    <p>Enter your personal details and launch your career with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
     </div>
-    
- </div>
 
+    <script src="/js/main.js"></script>
+</body>
 
-        
-     <% include ./partials/footer %> 
+</html>
