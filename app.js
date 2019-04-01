@@ -3,9 +3,13 @@ var express = require("express"),
 bodyParser  = require("body-parser"),
 mongoose    = require("mongoose"),
 passport    = require("passport"),
+Job         = require("./models/jobs"),
 User        = require("./models/user"),
+flash = require('connect-flash'),
 LocalStrategy = require("passport-local"),
 methodOverride = require("method-override");
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var configAuth = require('./auth');
 
 
 // APP CONFIG
@@ -23,9 +27,55 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  },  
+  User.authenticate()
+));
+
+passport.use(new GoogleStrategy({
+        clientID: configAuth.googleAuth.clientID,
+        clientSecret: configAuth.googleAuth.clientSecret,
+        callbackURL: configAuth.googleAuth.callbackURL
+      },
+      function(accessToken, refreshToken, profile, done) {
+            process.nextTick(function(){
+                User.findOne({'google.id': profile.id}, function(err, user){
+                    if(err)
+                        return done(err);
+                    if(user)
+                        return done(null, user);
+                    else {
+                        var newUser = new User();
+                        newUser.google.id = profile.id;
+                        newUser.google.token = accessToken;
+                        newUser.google.name = profile.displayName;
+                        newUser.google.email = profile.emails[0].value;
+
+                        newUser.save(function(err){
+                            if(err)
+                                throw err;
+                            return done(null, newUser);
+                        })
+                        console.log(profile);
+                    }
+                });
+            });
+        }
+
+    ));
+
+passport.serializeUser(function(user, done){
+        done(null, user.id);
+    });
+
+    passport.deserializeUser(function(id, done){
+        User.findById(id, function(err, user){
+            done(err, user);
+        });
+    });
 
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
@@ -34,17 +84,7 @@ app.use(function(req, res, next){
 
 
 // MONGOOSE/MODEL CONFIG
-var jobSchema = new mongoose.Schema({
-    title: String,
-    company:String,
-    type: String,
-    location: String,
-    description: String,
-    requirements: String,
-    applydate: String
-});
 
-var Job = mongoose.model("Job", jobSchema);
 
 //create a blog
 // Job.create({
@@ -63,23 +103,46 @@ var Job = mongoose.model("Job", jobSchema);
 
 
 app.get("/", function(req, res){
-  res.redirect("/jobs"); 
+  res.render("index"); 
 });
 
 
 //index route
-app.get("/jobs",   function(req, res){
-    //retrieve all jobs from the database
-    Job.find({}, function(err, jobs){
-        if(err){
-            console.log("ERROR!!!!");
-        }else{
-            res.render("index", {jobs: jobs, currentUser: req.user}); 
-        }
-    });
+// app.get("/",   function(req, res){
+//     //retrieve all jobs from the database
+//     Job.find({}, function(err, jobs){
+//         if(err){
+//             console.log("ERROR!!!!");
+//         }else{
+//             res.render("index", {jobs: jobs, currentUser: req.user}); 
+//         }
+//     });
       
+// });
+
+
+//new route
+app.get("/jobs/new", function(req, res) {
+   res.render("new");
+   
 });
 
+//create route - post a job
+app.post("/jobs", function(req, res) {
+    
+    //creat a job post
+    Job.create(req.body.job, function(err, newJob){
+        
+        //if an error occurs display the job post form
+        if(err){
+            res.render("new");
+            
+        //if no error redirect to jobs page after post is successful
+        }else {
+            res.redirect("/jobs");
+        }
+    });
+});
 
 //Show route
 app.get("/jobs/:id", isLoggedIn,  function(req, res) {
@@ -98,49 +161,66 @@ app.get("/about", function(req, res) {
     res.render("about");
 })
 
+app.get("/profile", function(req, res) {
+    res.render('profile', { user: req.user });
+})
+
 
 //AUTH ROUTES
 
+app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+
+    app.get('/auth/google/callback', 
+      passport.authenticate('google', { successRedirect: '/profile',
+                                          failureRedirect: '/' }));
  
  //show register form
- app.get("/register", function(req, res){
-     res.render("register");
- });
+ // app.get("/register", function(req, res){
+ //     res.render("register");
+ // });
+
+ // show login form
+app.get("/login", function(req, res){
+   res.render("login"); 
+});  
  
  //handle sign up logic
  app.post("/register", function(req, res){
-     var newUser = new User({username: req.body.username});
+     var newUser = new User({
+        firstName: req.body.firstName, 
+        lastName: req.body.lastName, 
+        username: req.body.email
+    });
+     console.log(newUser.firstName);
      User.register(newUser, req.body.password, function(err, user){
          if(err){
              console.log(err);
-             return res.render("register");
+             return res.render("login");
          }
          passport.authenticate("local")(req, res, function(){
-             res.redirect("/jobs");
+             // res.redirect("/jobs");
+             
+             res.render('profile', { user: req.user });
+
          });
      });
  });
  
-// show login form
-app.get("/login", function(req, res){
-   res.render("login"); 
-});
+
 // handling login logic
 app.post("/login", passport.authenticate("local", 
     {
-        successRedirect: "/jobs",
+        successRedirect: "/profile",
         failureRedirect: "/login"
     }), function(req, res){
 });
  
 
 
-
-
 //logout route
 app.get("/logout", function(req,res){
     req.logout();
-    res.redirect("/jobs");
+    res.redirect("/");
 });
 
 function isLoggedIn(req, res, next){
