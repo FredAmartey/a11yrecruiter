@@ -1,6 +1,10 @@
-@charset "UTF-8";
-
-
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;}
 /* =====================Responsive Layout breakpoint=====================
 0 - 600px: Phone
 600 - 900px: Tablet portrait
@@ -17,23 +21,6 @@ $breakpoint arguement choices:
   
 
   1em = 16px
- */
- :root {
-    --text-body-color: #777;
-    --btn-text-color: #fff;
-    --color-primary: #eb2f64;
-    --color-primary-light: #FF3366;
-    --color-primary-dark: #BA265D;
-    --color-grey-light-1: #faf9f9;
-    --color-grey-light-2: #f4f2f2;
-    --color-grey-light-3: #f0eeee;
-    --color-grey-light-4: #ccc;
-    --color-grey-dark-1: #333;
-    --color-grey-dark-2: #777;
-    --color-grey-dark-3: #999;
-    --line: 1px solid var(--color-grey-light-2); }
-
-
 
 /* ======================== Animations ======================= */
  @-webkit-keyframes moveInLeft {
@@ -107,7 +94,7 @@ $breakpoint arguement choices:
      100% {
          opacity: 1;
          -webkit-transform: translate(0);
-                 tranform: translate(0);} }
+                 transform: translate(0);} }
 
 /* ==================== Animations =====================*/
 
@@ -115,14 +102,6 @@ $breakpoint arguement choices:
 
 
 /* ==================== Base =====================*/
-
-*, 
-*::after, 
-*::before {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: inherit;
-            box-sizing: inherit;}
 
 html {
     font-size: 62.5%;}
@@ -144,16 +123,16 @@ body {
     font-family: "quicksand", sans-serif;
     font-weight: 400;
     line-height: 1.7;
-    color: var(--text-body-color); }
+    color: #777;}
 
 /* ==================== Base  =====================*/
 
 /* ==================== header  =====================*/
 
 header {
-    height: 85vh;
-    background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.6))), url(../img/BackgroundImg.jpg);
-    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url(../img/BackgroundImg.jpg);
+    height: 100vh;
+    background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.6))), url(../img/back.jpg);
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url(../img/back.jpg);
     background-size: cover;
     background-position: top;
     position: relative;
@@ -295,6 +274,41 @@ header {
 
 /* ==================== header caption =====================*/
 
+
+
+
+/* ==================== error message  =====================*/
+  .message-container {
+    padding: .01rem .01rem;
+    border-radius: 5px;
+  }
+
+  .message-error {
+      background-color: #f8d7da;
+      border-color: #f8d7da;
+  }
+
+.message-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.success-text {
+    color: #155724;
+    font-weight: 400;
+}
+.error-text {
+    color: #721c24;
+    font-weight: 400;
+}
+/* ==================== error message  =====================*/
+
+
+
+
+
+
+
 /* ==================== button component =====================*/
 
 .btn, .btn:link, .btn:visited {
@@ -348,8 +362,12 @@ header {
  */
 .btn--light-blue {
     background-color: #25CCF7;
-    color: var(--btn-text-color); }
-    .btn--light-blue::after {
+}
+
+.btn--light-blue {
+    color: #fff }
+
+.btn--light-blue::after {
         background-color: #25CCF7; }
 .btn--medium-blue {
     background-color: #4285f4;
@@ -358,7 +376,6 @@ header {
     color: #fff; }
     .btn--medium-blue::after {
         background-color: #4285f4; }
-}
 .btn--dark-blue {
     background-color: #0A79DF;
     color: #fff; }
@@ -508,7 +525,7 @@ header {
 .u-margin-top-big {
     margin-top: 8rem !important; }
 
-.u-marign-top-huge {
+.u-margin-top-huge {
     margin-top: 10rem !important; }
 
 /* padding */
@@ -574,6 +591,8 @@ header {
 
 
 /* ==================== Typography  =====================*/
+.paragraph {
+    font-size: 1.6rem; }
 
 .heading-primary {
     font-size: 6rem;
@@ -587,7 +606,7 @@ header {
     font-weight: 700; }
     @media only screen and (max-width: 56.25em){
         .heading-secondary {
-           font-size: 3rem; } 
+           font-size: 3rem; }  }
     @media only screen and (max-width: 37.5em){
         .heading-secondary {
            font-size: 2.5rem; } } 
@@ -598,8 +617,7 @@ header {
 }   
 
 
-.paragrph {
-    font-size: 1.6rem; }
+
 
 
 
@@ -637,8 +655,8 @@ header {
             @media only screen and (max-width: 56.25em) {
                 .row [class^="col-"] {
                     width: 100% !important;} }
- 
-                    
+
+
 /* grid  */
 .row .col-1-of-2 {
     width: calc((100% - 6rem) / 2); }  
@@ -655,7 +673,66 @@ header {
 
 
 /* ==================== general layout + grid =====================*/
+        .feature-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            padding: 3rem;
+            text-align: center;
+            border-radius: 3px;
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+            transition: transform .3s;
 
+        }
+
+        .feature-box:hover {
+            transform: translateY(-1.5rem) scale(1.03);
+        }
+        /* ======================= card component =====================*/
+        .job-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            padding: 2.5rem;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+            -webkit-transition: -webkit-transform .3s;
+            transition: -webkit-transform .3s;
+            transition: transform .3s;
+            transition: -webkit-transform .3s; }
+
+        .job-card:hover {
+             transform: translateY(-1.5rem) scale(1.03);
+        }
+
+        .job-card__heading {
+            font-size: 2.8rem;
+            font-weight: 300;
+            text-align: left;
+            width: 75%;
+        }
+
+        .job-card__logo {
+            font-size: 6rem;
+            margin-bottom: .6rem;
+        }
+
+        .job-card__details ul {
+            list-style: none;
+            width: 80%; }
+
+        .job-card__details ul li {
+            text-align: left;
+            font-size: 1.5rem; }
+
+        .job-card__link:hover {
+            -webkit-transform: translateY(-1.5rem) scale(1.03);
+            transform: translateY(-1.5rem) scale(1.03); }
+
+        @media only screen and (max-width: 56.25em){
+            .job-card {
+                padding: 2rem;
+            }
+        }
 
 
 /* ==================== form component =====================*/
@@ -678,8 +755,8 @@ header {
         } }
     .form__input:focus {
         outline: none;
-        -webkit-box-shadow: 0 1rem 2rem rbga(0, 0, 0, 0.1);
-                box-shadow: 0 1rem 2rem rbga(0, 0, 0, 0.1); }
+        -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+                box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
     .form__input:focus:invalid {
         border-bottom: 3px solid #ff7730; }
     .form__input::-webkit-input-placeholder { 
@@ -699,8 +776,6 @@ header {
     visibility: hidden;
     -webkit-transform: translateY(-4rem);
             transform: translateY(-4rem); }
-
-
 
 /* ======================= form component =====================*/
 
@@ -764,13 +839,18 @@ header {
                     column-gap: 4rem;
             -webkit-column-rule: 1px solid #eee;
                     column-rule: 1px solid #eee; }
-        .popup:target {
-            opacity: 1;
-            visibility: visible; }
-        .popup:target .popup__content {
-            opacity: 1;  
-            -webkit-transform: translate(-50%, -50%) scale(1);
-            transform: translate(-50%, -50%) scale(1); }
+  .popup:target {
+      opacity: 1;
+      visibility: visible;
+  }
+ .popup:target .popup__content {
+     opacity: 1;
+     -webkit-transform: translate(-50%, -50%) scale(1);
+ }
+
+ .popup:target .popup__content {
+     transform: translate(-50%, -50%) scale(1);
+ }
 
 /* ======================= popup design =====================*/
 
@@ -778,50 +858,7 @@ header {
 
 
 
-/* ======================= card component =====================*/
-.job-card {
-    background-color: rgba(225, 225, 225, 0.8);
-    font-size: 1.5rem; 
-    padding: 2.5rem;
-    border-radius: 3px;
-    -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-    -webkit-transition: -webkit-transform .3s;
-    transition: -webkit-transform .3s;
-    transition: transform .3s;
-    transition: transform .3s, -webkit-transform .3s; }
-    @media only screen and (max-width: 56.25em){
-        .job-card {
-            padding: 2rem; } }
 
-.job-card__heading {
-    font-size: 2.8rem;
-    font-weight: 300;
-    text-align: left;
-    width: 75%;
-}
-
-.job-card__logo {
-    font-size: 6rem;
-    margin-bottom: .6rem;
-}
-
-.job-card__detials ul {
-    list-style: none;
-    width: 80%; }
-
-.job-card__details ul li {
-    text-align: left;
-    font-size: 1.5rem;
-}
-
-.job-card__link:hover {
-    -webkit-transform: translateY(-1.5rem) scale(1.03);
-            transform: translateY((-1.5rem) scale(1.03); }
-
-
-
-/* ======================= card component =====================*/
 
 
 

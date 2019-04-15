@@ -1,9 +1,21 @@
 <!doctype html>
 <html>
 <head>
+	<meta name="google-signin-client_id" content="776128651824-b2btrasqv8a50tn32jed3946d5jfkmpd.apps.googleusercontent.com">
 	<title>Authentication Test</title>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137683535-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-137683535-1');
+	</script>
+
 	<style>
 		body 		{ padding-top:80px; word-wrap:break-word; }
 	</style>
@@ -23,6 +35,8 @@
 			<div class="well">
 				<h3><span class="fa fa-user"></span> Local</h3>
 
+				<% if(user.username){ %>
+
 					<p>
 						<strong>id</strong>: <%= user._id %><br>
 						<strong>First Name</strong>: <%= user.firstName %><br>
@@ -31,6 +45,11 @@
 						<strong>password</strong>: <%= user.password %>
 					</p>
 
+					<a href = "/unlink/local" class="btn btn-default">Unlink</a>
+				<% }	else {%>
+					<a href ="/connect/local" class="btn btn-default"> Connect Local</a>
+				<% } %> 	
+				
 			</div>
 		</div>
 
@@ -45,7 +64,6 @@
                     <strong>email</strong>: <%= user.google.email %><br>
                     <strong>name</strong>: <%= user.google.name %>
                 </p>
-
             </div>
         </div>
 

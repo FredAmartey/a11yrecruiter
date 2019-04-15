@@ -19,6 +19,8 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 
+app.use(flash());
+
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret: "Rusty",
@@ -58,7 +60,7 @@ passport.use(new GoogleStrategy({
                             if(err)
                                 throw err;
                             return done(null, newUser);
-                        })
+                        });
                         console.log(profile);
                     }
                 });
@@ -79,6 +81,9 @@ passport.serializeUser(function(user, done){
 
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    res.locals.currentGoogleUser = req.google.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 
@@ -107,18 +112,20 @@ app.get("/", function(req, res){
 });
 
 
-//index route
-// app.get("/",   function(req, res){
-//     //retrieve all jobs from the database
-//     Job.find({}, function(err, jobs){
-//         if(err){
-//             console.log("ERROR!!!!");
-//         }else{
-//             res.render("index", {jobs: jobs, currentUser: req.user}); 
-//         }
-//     });
-      
-// });
+//jobs route
+app.get("/jobs",  isLoggedIn,  function(req, res){
+    //retrieve all jobs from the database
+    Job.find({}, function(err, jobs){
+        if(err){
+            console.log(err);
+            console.log("ERROR!!!!!");
+        }else{
+            // res.render("index", {jobs: jobs, currentUser: req.user});
+            res.render("jobs", {jobs: jobs, currentUser: req.user, currentGoogleUser: req.google.user});
+            // res.render("jobs");
+        }
+    });
+});
 
 
 //new route
@@ -159,11 +166,11 @@ app.get("/jobs/:id", isLoggedIn,  function(req, res) {
 
 app.get("/about", function(req, res) {
     res.render("about");
-})
+});
 
 app.get("/profile", function(req, res) {
     res.render('profile', { user: req.user });
-})
+});
 
 
 //AUTH ROUTES
@@ -171,7 +178,7 @@ app.get("/profile", function(req, res) {
 app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
     app.get('/auth/google/callback', 
-      passport.authenticate('google', { successRedirect: '/profile',
+      passport.authenticate('google', { successRedirect: '/jobs',
                                           failureRedirect: '/' }));
  
  //show register form
@@ -183,6 +190,15 @@ app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'ema
 app.get("/login", function(req, res){
    res.render("login"); 
 });  
+
+// handling login logic
+app.post("/login", passport.authenticate("local", 
+    {
+        successRedirect: "/jobs",
+        failureRedirect: "/login"
+        // failureFlash: true
+    }), function(req, res){
+});
  
  //handle sign up logic
  app.post("/register", function(req, res){
@@ -195,31 +211,25 @@ app.get("/login", function(req, res){
      User.register(newUser, req.body.password, function(err, user){
          if(err){
              console.log(err);
+             req.flash("error", err.message);
              return res.render("login");
          }
          passport.authenticate("local")(req, res, function(){
-             // res.redirect("/jobs");
-             
-             res.render('profile', { user: req.user });
+             req.flash("success", "Welcome " + user.username);
+             req.flash("success", "Welcome ") + google;
+             res.redirect("/jobs");
+             // res.render('profile', { user: req.user });
 
          });
      });
  });
  
 
-// handling login logic
-app.post("/login", passport.authenticate("local", 
-    {
-        successRedirect: "/profile",
-        failureRedirect: "/login"
-    }), function(req, res){
-});
- 
-
 
 //logout route
 app.get("/logout", function(req,res){
     req.logout();
+    req.flash("success", "Successfully logged out");
     res.redirect("/");
 });
 
@@ -227,6 +237,7 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
+    req.flash("error", "Please Login First!");
     res.redirect("/login");
 }
 

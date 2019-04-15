@@ -4,6 +4,16 @@
 	<title>a11yRecruiter</title>
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/vizz.css">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137683535-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-137683535-1');
+	</script>
+
 
 </head>
 <body>
@@ -16,7 +26,7 @@
 			</div>
 			<ul class="navigation__list">
 				<li class="navigation__item">
-					<a class="navigation__link" href="">Blogs</a>
+					<a class="navigation__link" href="">About Us</a>
 				</li>
 				<li class="navigation__item">
 					<a class="navigation__link" href="">Career events</a>
@@ -28,6 +38,13 @@
 		  </div>
 		</nav>
 	</div>
+		<div class="row">
+			<% if(success && success.length > 0) { %>
+				<div class="message-container message-success">
+					<p class="u-center-text success-text"><%= success %></p>
+				</div>
+			<%}%>
+		</div>
      <div class="banner-caption">
      	<div class="row">
      		<div class="caption-container">
@@ -39,6 +56,4 @@
      	</div>
      </div>
 	</header>
-
-	
 </body>

@@ -3,14 +3,24 @@
     <head>
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <meta name="google-signin-client_id" content="776128651824-b2btrasqv8a50tn32jed3946d5jfkmpd.apps.googleusercontent.com">     
+
        <title>Login</title>
        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
        <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Quicksand:300,400,700"> 
        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-       <link rel="stylesheet" href="/stylesheets/main.css" />
-       <link rel="stylesheet" href="/stylesheets/vizz.css" />
-       <script src="https://apis.google.com/js/platform.js" async defer></script>
+       <link rel="stylesheet" href="/stylesheets/main.css">
+       <link rel="stylesheet" href="/stylesheets/vizz.css">
+       <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137683535-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-137683535-1');
+        </script>
+
     </head>
     <body>
         <div class="navigation__background-c navigation__nav">
@@ -32,4 +42,16 @@
                 </ul>
               </div>
             </nav>
+        </div>
+        <div class="row">
+            <% if(error && error.length > 0){ %>
+                <div class="message-container message-error">
+                <p class="u-center-text error-text"><%= error %></p>
+            </div>
+            <% } %>
+             <% if(success && success.length > 0) { %>
+                <div class="message-container message-success">
+                <p class="u-center-text success-text"><%= success %></p>
+                </div>
+            <%}%>
         </div>

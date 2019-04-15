@@ -1,0 +1,23 @@
+<% include ./partials/header %>
+<div class="row">
+	<%if(currentUser){%>
+	<h2 class="heading-tetiary">Hi <%= currentUser.firstName %> welcome to the Jobs page</h2>
+	<%}%>
+	
+</div>
+<div class="row">
+ <div>
+	<% jobs.forEach(function(job){ %>
+	<div class="col-1-of-4">
+		<div class="job-card">
+			<h2 class="heading-tertiary"><%=job.title %></h2>
+			<p class=""><%= job.company %></p>
+			<p><%= job.type %></p>
+			<p><%= job.location %></p>
+			<p><%= job.applydate %></p>
+			<a class="btn-text job-card__link"  href="/jobs/<%=job._id %>">Quick look</a>
+		</div>
+	</div>
+	<% }) %>
+ </div>
+</div>
