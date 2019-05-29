@@ -1,10 +1,71 @@
 <% include ./partials/header %>
-<div class="row">
-	<%if(currentUser){%>
-	<h2 class="heading-tetiary">Hi <%= currentUser.firstName %> welcome to the Jobs page</h2>
+	<div class="row">
+	<%if(currentUser.firstName ? currentUser.firstName : ''){%>
+			<h2 class="heading-tetiary">Hi <%= currentUser.firstName ? currentUser.firstName : '' %> welcome to the Jobs page</h2>
 	<%}%>
-	
+	<%if(currentGoogleUser.firstName ? currentGoogleUser.firstName : ''){%>
+			<h2 class="heading-tetiary">Hi <%= currentGoogleUser.firstName ? currentGoogleUser.firstName : '' %> welcome to the Jobs page</h2>
+	<%}%>
+
 </div>
+
+<div class="row">
+	<div class="search u-margin-bottom-medium">
+		<h4 class="">Search for Job</h4>
+		<form action="/jobs" method="GET" style="padding: 0;" class="search__form">
+			<div class="search__content">
+				<i class="fa fa-search search-bar__icon"></i>
+				<input class="search__input" type="search" name="search" value="">
+			</div>
+		</form>
+	</div>
+
+ <div class="col-1-of-3">
+   <div class="filter__seach-box">
+   	  <span style="text-align:left;">Filter search result</span>
+			<span style="text-align:right;">Clear result</span>
+      <form action="#" method="get">
+      	  <div class="form__group">
+      	  	<input class="form__input" type="text" name="location" id="location" placeholder="Job Location">
+						<label for="location" class="form__label">Job Location</label>
+      	  </div>
+					<div class="form__group">
+      	  	<input class="form__input" type="text" name="location" id="location" placeholder="Category">
+						<label for="location" class="form__label">Category</label>
+      	  </div>
+					<div class="form__group">
+      	  	<input class="form__input" type="text" name="location" id="location" placeholder="Job Type">
+						<label for="location" class="form__label">Job Type</label>
+      	  </div>
+      </form>
+   </div>
+ </div>
+
+<div class="col-2-of-3">
+	<% jobs.forEach(function(job){ %>
+	<a href="/jobs/<%=job._id %>">
+ 	  <div class="job job-card u-margin-bottom-medium">
+ 	  	<figure class="logo__shape">
+ 	  		<img class="logo__img" src="./img/loginImg.jpg" alt="company logo">
+				<figcaption class="logo__caption"></figcaption>
+ 	  	</figure>
+			<div class="job__text">
+			 <div class="title u-margin-bottom-small">
+					<h3 class="heading-tertiary"><%=job.title %></h3>
+			 </div>
+				 <div class="type">
+				 	 <p class="paragraph-t paragraph"><%=job.type%></p>
+				 </div>
+				 <div class="city">
+				 		<p class="paragraph-c paragraph"><%=job.location%></p>
+				 </div>
+			</div>
+ 	  </div>
+	</a>
+ <% }) %>
+</div>
+</div>
+
 <div class="row">
  <div>
 	<% jobs.forEach(function(job){ %>

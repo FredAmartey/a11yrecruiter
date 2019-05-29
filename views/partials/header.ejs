@@ -6,10 +6,12 @@
 
        <title>Login</title>
        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
-       <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Quicksand:300,400,700"> 
+       <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Quicksand:300,400,700">
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
        <link rel="stylesheet" href="/stylesheets/main.css">
        <link rel="stylesheet" href="/stylesheets/vizz.css">
+       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
        <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137683535-1"></script>
@@ -22,23 +24,102 @@
         </script>
 
     </head>
-    <body>
+    <body style="background-color: #f8f8f8;" class="content">
         <div class="navigation__background-c navigation__nav">
             <nav>
               <div class="row">
                    <div class="navigation_logo">
                     <a class="navigation_logo-link" href="/">A11yRecruiter</a>
                 </div>
-                <ul class="navigation__list">
+                <ul class=" u-margin-top-nav navigation__list">
+                  <% if(!currentUser || !currentGoogleUser){%>
                     <li class="navigation__item">
                         <a class="navigation_link" href="">Contact Us</a>
                     </li>
                     <li class="navigation__item">
                         <a class="navigation_link" href="">Need Help?</a>
                     </li>
+                    <% }
+                    else if(currentUser.firstName ? currentUser.firstName : '') { %>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Jobs</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Students</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Employers</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Events</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Dashboard</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Messages</a>
+                    </li>
+                    <li class="navigation__item">
+                      <div class="user-account">
+                        <div class="img-container">
+                          <a href="#">
+                            <img class="img img-circle" alt="user-profile-image" src="./img/profile_pic.jpg">
+                          </a>
+                        </div>
+                      </div>
+                      <div class="account-name">
+                        <span class="avatar-name"><%= currentUser.firstName %></span>
+                      </div>
+                    </li>
                     <!-- <li class="navigation__item">
-                        <a class="navigation__link btn btn--medium-blue btn--sr" href="/login" class="">Log in</a>
+                         <div class="user-account">
+                           <span class="user-account--initials"><%= currentUser.firstName.charAt(0).toUpperCase();%><%= currentUser.lastName.charAt(0).toUpperCase();%></span>
+                         </div>
+                         <div class="account-name">
+                           <span class="avatar-name"><%= currentUser.firstName %></span>
+                         </div>
                     </li> -->
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="/logout">Logout</a>
+                    </li>
+                    <% }
+                    else if(currentGoogleUser.firstName ? currentGoogleUser.firstName : '') { %>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Jobs</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Students</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Employers</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Events</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Dashboard</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="">Messages</a>
+                    </li>
+                    <li class="navigation__item">
+                         <div class="user-account">
+                           <% if(currentGoogleUser.lastName){ %>
+                             <span class="user-account--initials"><%= currentGoogleUser.firstName.charAt(0).toUpperCase();%><%=currentGoogleUser.lastName.charAt(0).toUpperCase(); %></span>
+                           </div>
+                           <% } else{ %>
+                             <span class="user-account--initials"><%= currentGoogleUser.firstName.charAt(0).toUpperCase(); %></span>
+                             <% } %>
+                         </div>
+                         <div class="account-name">
+                           <span class="avatar-name"><%= currentGoogleUser.firstName %></span>
+                         </div>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation_link" href="/logout">Logout</a>
+                    </li>
+                  <% } %>
+
                 </ul>
               </div>
             </nav>
@@ -46,12 +127,15 @@
         <div class="row">
             <% if(error && error.length > 0){ %>
                 <div class="message-container message-error">
-                <p class="u-center-text error-text"><%= error %></p>
+                <p class="u-center-text error-text"> <%= error %></p>
             </div>
             <% } %>
              <% if(success && success.length > 0) { %>
                 <div class="message-container message-success">
                 <p class="u-center-text success-text"><%= success %></p>
                 </div>
-            <%}%>
+            <% } %>
         </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>

@@ -48,8 +48,8 @@
 					<a href = "/unlink/local" class="btn btn-default">Unlink</a>
 				<% }	else {%>
 					<a href ="/connect/local" class="btn btn-default"> Connect Local</a>
-				<% } %> 	
-				
+				<% } %>
+
 			</div>
 		</div>
 
@@ -62,7 +62,9 @@
                     <strong>id</strong>: <%= user.google.id %><br>
                     <strong>token</strong>: <%= user.google.token %><br>
                     <strong>email</strong>: <%= user.google.email %><br>
-                    <strong>name</strong>: <%= user.google.name %>
+                    <strong>full name</strong>: <%= user.google.fullName %><br>
+										<strong>first name</strong>: <%= user.google.firstName %><br>
+										<strong>last name</strong>: <%= user.google.lastName %>
                 </p>
             </div>
         </div>
