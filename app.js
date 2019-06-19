@@ -10,6 +10,9 @@ methodOverride = require("method-override");
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const configAuth = require('./auth');
 
+//configure dotenv
+require('dotenv').config();
+
 //require routes from the routes directory
 const jobRoutes   = require("./routes/jobs"),
       authRoutes  = require("./routes/index");
@@ -34,7 +37,8 @@ app.use(passport.session());
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
-    passwordField: 'password'
+    passwordField: 'password',
+    // tokenField: 'token'
   },
   User.authenticate()
 ));
