@@ -1,11 +1,9 @@
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
+const dropdown = document.querySelector(".dropdown");
 
-signUpButton.addEventListener('click', () => {
-  container.classList.add("right-panel-active");
-});
+dropdown.addEventListener('click', () => {
+    const menu = document.querySelector(".dropdown-menu");
+    if(menu){
+      menu.classList.toggle("closed");
+    }
 
-signInButton.addEventListener('click', () => {
-  container.classList.remove("right-panel-active");
 });
