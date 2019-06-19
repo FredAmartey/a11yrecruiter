@@ -20,7 +20,7 @@ const middleware = require("../middleware");
 
 //jobs route
 router.get("/jobs",  middleware.isLoggedIn,  function(req, res){
-
+    // eval(require('locus'));
     //adding a search api to find a particular job based on user's search
     var noMatch = null // varaible for no results returned from search query
     if(req.query.search){
@@ -36,7 +36,7 @@ router.get("/jobs",  middleware.isLoggedIn,  function(req, res){
 
         } else{
           if(jobs.length < 1){
-            noMatch = "No Jobs match your search query, please try again.";
+            noMatch = "No Jobs match your search, please try again.";
           }
 
           res.render("jobs",{jobs: jobs, noMatch: noMatch, currentUser: req.user, currentGoogleUser: req.user.google});
@@ -59,7 +59,7 @@ router.get("/jobs",  middleware.isLoggedIn,  function(req, res){
 });
 
 
-//new route
+//new route to make a job post
 router.get("/jobs/new", function(req, res) {
     res.render("new");
 
@@ -85,12 +85,58 @@ router.post("/jobs", function(req, res) {
 //Show route
 router.get("/jobs/:id", middleware.isLoggedIn,  function(req, res) {
     Job.findById(req.params.id, function(err, foundJob){
-        if(err){
+        if(err || foundJob == null){
+            req.flash("error","Sorry Job not found");
+            // res.redirect("back");
             res.redirect("/jobs");
         }else{
+           //render show template with that job
             res.render("show", {job: foundJob});
         }
     })
+});
+
+//Edit route
+router.get("/jobs/:id/edit", middleware.isLoggedIn, function(req, res){
+ //find job post to edit using it's id
+  Job.findById(req.params.id, function(err, foundJob){
+
+    //reder edit template with that job
+     res.render("edit", {job: foundJob});
+  });
+});
+
+
+//Update route
+router.put("/jobs/:id", middleware.isLoggedIn, function(req, res){
+   //find and update the correct job
+   Job.findById(req.params.id, req.body.job, function(err, updatedJob){
+     let jobID = req.params.id;
+     if(err) {
+       res.redirect("/jobs");
+
+     }else {
+       //redirect to the show template with that job
+       res.redirect("/jobs/" + jobID);
+     }
+   });
+});
+
+//delete route
+router.delete("/job/:id", middleware.isLoggedIn, function(req, res){
+  //find job to delete by id
+  Job.findByIdAndRemove(req.params.id, function(err){
+    //if an error occurs redirect user to the jobs page
+    if(err){
+      res.redirect("/jobs");
+    }
+
+    //if no error occurs and job deletion is successful,
+    // redirect user to jobs page
+    else {
+      res.redirect("/jobs");
+    }
+  });
 });
 
 function escapeRegex(text){
