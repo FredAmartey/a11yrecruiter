@@ -1,14 +1,81 @@
 <%include ./partials/header %>
+<div class="company">
+  <div class="row">
+     <div class="company-info">
+       <div class="company-logo logo__shape">
+         <img class="logo__img" src="../img/loginImg.jpg" alt="compnay log">
+       </div>
+       <div class="company-info-summary">
+         <h2><%= job.company %></h2>
+         <p><%= job.location %></p>
+       </div>
+     </div>
+  </div>
+</div>
+<!-- company -->
+<div class="job-nav u-margin-bottom-small">
+ <div class="row">
+    <ul class="job-nav-list">
+      <li class="job-nav-item"><a class="j-page-link" href="#">About</a></li>
+      <li class="job-nav-item"><a class="j-page-link" href="#">Job</a></li>
+    </ul>
+ </div>
+</div>
+
 <div class="job-details">
+<div class="row">
+  <div class="col-1-of-3 u-margin-top">
+    <div class="job-box-item job-summary">
+      <div class="location job-summary-content">
+        <h4>Location</h4>
+        <p class="italics"><%= job.location %></p>
+      </div>
+      <div class="type job-summary-content">
+        <h4>Job Type</h4>
+        <p class="italics"><%= job.type%></p>
+      </div>
+      <div class="applydate job-summary-content">
+        <h4>Deadline</h4>
+        <p class="italics"><%= job.applydate%></p>
+      </div>
+    </div>
+    <div class="apply-button u-center-text">
+       <a class="btn btn-apply btn--medium-blue" href="#">Apply Now</a>
+    </div>
+  </div>
+  <div class="col-2-of-3">
+    <div class="job-details-content">
+      <h3 class="job-heading u-margin-bottom"><%= job.title %></h3>
+      <div class="job-box-item job-details job-details-box">
+        <div class="job-content">
+          <h3 class="heading-tertiary">Job Description</h3>
+          <p><%= job.description %></p>
+        </div>
+        <div class="job-content">
+          <h3 class="heading-tertiary">Requirements</h3>
+          <p><%= job.requirements %></p>
+        </div>
+      </div>
+    </div>
+    <div class="apply-button u-center-text">
+       <a class="btn btn-apply btn--medium-blue" href="#">Apply Now</a>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+ <!-- <div class="job-details">
     <div class="row">
          <div class="col-1-of-4">
              <h2 class="heading-secondary">Job Details</h2>
          </div>
-         
+
         <div class="col-3-of-4">
             <div class="feature-box">
                 <div class="summary">
-                 <p><span><%= job.company %></span></p> 
+                 <p><span><%= job.company %></span></p>
                   <p><span><%= job.type %></span></p>
                   <p><span><%= job.location %></span></p>
                   <p><span><%= job.applydate %></span></p>
@@ -22,12 +89,16 @@
                      <p class="paragraph"><span><%= job.requirements %></span></p>
                 </div>
                 <div class="margin-top-mini button">
-                   <button a href="#">Apply Now</a></button> 
+                   <button a href="#">Apply Now</a></button>
+                   <form id="delete-form" action="/job/<%=job._id %>?_method=DELETE" method="POST">
+                         <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                    </form>
+                   	<!-- <button a class="button" href="/job/<%=job._id %>">Delete</a></button> -->
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!--<div class="ui text main container segment">-->
 <!--    <div class="ui huge header"><%= job.title%></div>-->
