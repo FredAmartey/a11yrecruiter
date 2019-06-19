@@ -14,9 +14,12 @@ var UserSchema = new mongoose.Schema({
 	    firstName: String,
 	    lastName: String,
 	    email: { type: String, require: true, index:true, unique:true,sparse:true},
-	    password: { type: String, require:true }
+	    password: { type: String, require:true },
+			avatar: String,
+			resetPasswordToken: String,
+			resetPasswordExpires: Date
 
 });
 
-UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(passportLocalMongoose)
 module.exports = mongoose.model("User", UserSchema);
