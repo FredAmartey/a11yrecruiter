@@ -11,11 +11,12 @@
 
 <div class="row">
 	<div class="search u-margin-bottom-medium">
-		<h4 class="">Search for Job</h4>
+		<!-- <h4 class="">Search for Job</h4> -->
 		<form action="/jobs" method="GET" style="padding: 0;" class="search__form">
 			<div class="search__content">
 				<i class="fa fa-search search-bar__icon"></i>
-				<input class="search__input" type="search" name="search" value="">
+				<label for="search">Search for Job</label>
+				<input class="search__input" id="search" type="search" name="search" value="">
 			</div>
 		</form>
 	</div>
@@ -42,11 +43,15 @@
  </div>
 
 <div class="col-2-of-3">
+	<% if(noMatch !== null) { %>
+		<p class="paragraph"><%= noMatch %></p>
+	<%}%>
 	<% jobs.forEach(function(job){ %>
 	<a href="/jobs/<%=job._id %>">
  	  <div class="job job-card u-margin-bottom-medium">
  	  	<figure class="logo__shape">
- 	  		<img class="logo__img" src="./img/loginImg.jpg" alt="company logo">
+				<!-- <i class="far fa-building"></i> -->
+ 	  		<img class="logo__img" src="../img/loginImg.jpg" alt="company logo">
 				<figcaption class="logo__caption"></figcaption>
  	  	</figure>
 			<div class="job__text">
@@ -82,3 +87,4 @@
 	<% }) %>
  </div>
 </div>
+<% include ./partials/footer %>
