@@ -20,6 +20,7 @@ npm install
 
 👤 **Fred Amartey**
 * Github: [@FredAmartey](https://github.com/FredAmartey)
+
 👤 **Terence Biney**
 * Github: [@Tereflech17](https://github.com/Tereflech17)
 
