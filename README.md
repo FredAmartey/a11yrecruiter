@@ -19,11 +19,10 @@ npm install
 ## Author
 
 👤 **Fred Amartey**
-
-👤 **Terence Biney**
-
 * Github: [@FredAmartey](https://github.com/FredAmartey)
+👤 **Terence Biney**
 * Github: [@Tereflech17](https://github.com/Tereflech17)
+
 
 ## Show your support
 
