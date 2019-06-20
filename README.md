@@ -16,15 +16,10 @@
 npm install
 ```
 
-## Run tests
-
-```sh
-npm run test
-```
-
 ## Author
 
 👤 **Fred Amartey**
+
 👤 **Terence Biney**
 
 * Github: [@FredAmartey](https://github.com/FredAmartey)
