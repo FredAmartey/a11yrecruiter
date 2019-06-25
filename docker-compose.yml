@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mongodb:
+    container_name: mongo
+    image: "mongo"
+    ports:
+     - "27017:27017"
+  backend:
+    container_name: a11yrecruiter-express
+    image: "a11yrecruiter-express"
+    build: .
+    command: node app.js
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
