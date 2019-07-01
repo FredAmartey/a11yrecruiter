@@ -8,6 +8,12 @@ var educationSchema = new mongoose.Schema({
    start_date: Date,
    end_date: Date,
    gpa: String,
+   coursework: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course"
+      }
+   ],
    user_id: {
        type: mongoose.Schema.Types.ObjectId,
        ref: "User"
