@@ -8,7 +8,7 @@ cloudinary.config({
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: 'uploads',
+  folder: 'profile-photos',
   allowedFormats: ['jpeg', 'jpg', 'png'],
   filename: function(req, file, cb){
     let buf = crypto.randomBytes(16);
