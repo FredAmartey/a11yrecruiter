@@ -19,7 +19,7 @@ const jobRoutes   = require("./routes/jobs"),
       authRoutes  = require("./routes/index");
 
 // APP CONFIG
-mongoose.connect("mongodb://localhost:27017/a11yrecruiter_db", {useNewUrlParser:true});
+mongoose.connect("mongodb://mongodb:27017/a11yrecruiter_db", {useNewUrlParser:true});
 mongoose.set('useCreateIndex', true);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
