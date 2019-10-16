@@ -1,4 +1,4 @@
-
+node_modules
 auth.js
 public/img/back2.jpg
 .floo
@@ -6,3 +6,4 @@ public/img/back2.jpg
 .env
 *.iml
 *.xml
+.DS_Store
