@@ -6,3 +6,4 @@ public/img/back2.jpg
 .env
 *.iml
 *.xml
+.DS_Store
