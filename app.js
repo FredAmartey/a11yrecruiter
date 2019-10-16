@@ -9,6 +9,7 @@ LocalStrategy = require("passport-local"),
 methodOverride = require("method-override");
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const configAuth = require('./auth');
+const port = process.env.PORT || 3000;
 
 //configure dotenv
 require('dotenv').config();
@@ -117,6 +118,6 @@ app.get("/about", function(req, res) {
 
 
 
-app.listen(3000, process.env.IP, function(){
-    console.log("A11YRECRUITER SERVER IS RUNNING!");
+app.listen(port, process.env.IP, function(){
+    console.log(`A11YRECRUITER SERVER IS RUNNING! - listening on port ${port}`);
 });
