@@ -39,7 +39,7 @@ router.get("/jobs",  middleware.isLoggedIn,  function(req, res){
             noMatch = "No Jobs match your search, please try again.";
           }
 
-          res.render("jobs",{jobs: jobs, noMatch: noMatch, currentUser: req.user, currentGoogleUser: req.user.google});
+          res.render("jobs/jobs",{jobs: jobs, noMatch: noMatch, currentUser: req.user, currentGoogleUser: req.user.google});
         }
       });
     } else {
@@ -61,7 +61,7 @@ router.get("/jobs",  middleware.isLoggedIn,  function(req, res){
 
 //new route to make a job post
 router.get("/jobs/new", function(req, res) {
-    res.render("new");
+    res.render("jobs/new");
 
 });
 
@@ -73,7 +73,7 @@ router.post("/jobs", function(req, res) {
 
         //if an error occurs display the job post form
         if(err){
-            res.render("new");
+            res.render("jobs/new");
 
             //if no error redirect to jobs page after post is successful
         }else {
@@ -91,7 +91,7 @@ router.get("/jobs/:id", middleware.isLoggedIn,  function(req, res) {
             res.redirect("/jobs");
         }else{
            //render show template with that job
-            res.render("show", {job: foundJob});
+            res.render("jobs/show", {job: foundJob});
         }
     })
 });
