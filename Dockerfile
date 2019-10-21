@@ -10,7 +10,7 @@ WORKDIR /var/www/a11yrecruiter
 COPY ["package.json", "./"]
 
 # Installs dependencies 
-RUN npm install --production --silent
+RUN npm install
 
 # Copy working files
 COPY ./ ./
