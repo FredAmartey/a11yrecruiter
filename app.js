@@ -23,6 +23,10 @@ router.use('/projects', function(req, res, next) {
   next();
 });
 
+router.use(function(req, res, next) {
+  res.render('index');
+});
+
 //configure dotenv
 require('dotenv').config();
 
@@ -129,7 +133,7 @@ app.get("/about", function(req, res) {
 //
 
 
-app.use('/projects/a11yrecruiter', router);
+app.use('/projects/a11yrecruiter/', router);
 app.listen(port, process.env.IP, function(){
     console.log(`A11YRECRUITER SERVER IS RUNNING! - listening on port ${port}`);
 });
