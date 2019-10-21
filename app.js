@@ -11,22 +11,22 @@ methodOverride = require("method-override");
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const configAuth = require('./auth');
 const port = process.env.PORT || 3000;
-// const router = express.Router();
+const router = express.Router();
 
-// //Router config
-// router.use(function(req, res, next) {
-//   console.log('%s %s %s', req.method, req.url, req.path);
-//   next();
-// });
+//Router config
+router.use(function(req, res, next) {
+  console.log('%s %s %s', req.method, req.url, req.path);
+  next();
+});
 
-// router.use('/projects', function(req, res, next) {
-//   // ... maybe some additional /projects logging ...
-//   next();
-// });
+router.use('/a11yrecruiter/', function(req, res, next) {
+  // ... maybe some additional /projects logging ...
+  next();
+});
 
-// router.use(function(req, res, next) {
-//   res.render('index');
-// });
+router.use(function(req, res, next) {
+  res.render('index');
+});
 
 //configure dotenv
 require('dotenv').config();
@@ -134,7 +134,7 @@ app.get("/about", function(req, res) {
 //
 
 
-// app.use('/projects/a11yrecruiter/', router);
+app.use('/a11yrecruiter/', router);
 app.listen(port, process.env.IP, function(){
     console.log(`A11YRECRUITER SERVER IS RUNNING! - listening on port ${port}`);
 });
