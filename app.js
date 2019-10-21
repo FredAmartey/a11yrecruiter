@@ -39,7 +39,7 @@ const jobRoutes   = require("./routes/jobs"),
 mongoose.connect("mongodb://localhost:27017/a11yrecruiter_db", {useNewUrlParser:true});
 mongoose.set('useCreateIndex', true);
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname + "/public")));
+app.use('/projects/a11yrecruiter/', express.static(path.join(__dirname + "/public")));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(flash());
