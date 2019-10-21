@@ -129,7 +129,7 @@ app.get("/about", function(req, res) {
 //
 
 
-app.use('/projects/a11yrecruiter/', router);
+app.use('/projects/a11yrecruiter', router);
 app.listen(port, process.env.IP, function(){
     console.log(`A11YRECRUITER SERVER IS RUNNING! - listening on port ${port}`);
 });
