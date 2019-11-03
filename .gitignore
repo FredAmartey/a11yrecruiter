@@ -4,5 +4,6 @@ public/img/back2.jpg
 .floo
 .flooignore
 .env
+.DS_Store
 *.iml
 *.xml
